@@ -1,0 +1,12 @@
+{
+  "firstName": "Giraldo",
+  "lastName": "Contreras",
+  "phone": "4455445544",
+  "age": "30",
+  "userStatus": "isActive",
+  "address": {
+    "id": "1",
+    "name": "Miguel Hidalgo",
+    "municipio": "Irrigacion"
+  }
+}

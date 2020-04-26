@@ -1,0 +1,97 @@
+#%RAML 1.0
+title: FRK RAML Version
+version: v1
+baseUri: http://my-api.examplehost.com
+
+uses:
+  users: types/users.raml
+  cards: types/cards.raml
+
+#traits:
+
+#resourceTypes:
+
+#annotationTypes:
+
+#types:
+
+
+/users:
+  description: Manages the oparation above the users.
+  #type: collection
+  post:
+    description: "Create new user"
+    body:
+      application/json:
+        type: users.users
+        examples: !include examples/users/post_request.json
+    responses:
+      201:
+        description: "Created"
+        headers:
+          Location:
+            description: "User Location URI"
+        body:
+          application/json:
+            type: users.users
+            examples: !include examples/users/post_201.json
+      400:
+        description: "Invalid or missing parameters"
+  get:
+    description: "List of users"
+    responses:
+      200:
+        description: "OK"
+        body:
+          application/json:
+            type: users.users[]
+            examples: !include examples/users/get_200.json
+  /{user-id}:
+    put:
+      description: "Modify user"
+      body:
+        application/json:
+          type: users.users
+      responses:
+        204:
+          description: "No content"
+        400:
+          description: "Invalid or missing parameters"
+    delete:
+      description: "delete an user"
+      responses:
+        204:
+          description: "No content"
+        400:
+          description: "Invalid or missing parameters"
+        409:
+          description: "Not erased"
+/cards:
+  description: Manages operations above the cards.
+  post:
+    description: "Create new cards"
+    body:
+      application/json:
+        type: cards.cards
+        examples: !include examples/users/post_request.json
+    responses:
+      201:
+        description: "Created"
+        headers:
+          Location:
+            description: "Cards Location URI"
+        body:
+          application/json:
+            type: cards.cards
+            examples: !include examples/users/post_201.json
+      400:
+        description: "Invalid or missing parameters"
+  get:
+    description: "Retrieve cards"
+    responses:
+      200:
+        description: "OK"
+        body:
+          application/json:
+            type: cards.cards[]
+            examples: !include examples/users/get_200.json
